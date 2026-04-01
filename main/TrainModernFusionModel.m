@@ -2,8 +2,6 @@
 % Modernized training pipeline for GI tract image classification
 % Combines state-of-the-art CNNs, handcrafted features, and modern ML techniques
 %
-% Author: Updated for 2024-2025
-% Date: 2024
 
 clc; clear; close all;
 
