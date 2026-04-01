@@ -1,0 +1,16 @@
+# MATLAB
+*.mat
+*.mlx
+*.mlappinstall
+*.mltbx
+*.mlapp
+*.prj
+*.p
+*.asv
+*.log
+results/*.mat
+*.fig
+
+# System
+.DS_Store
+Thumbs.db
