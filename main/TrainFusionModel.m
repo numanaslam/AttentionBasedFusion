@@ -3,7 +3,7 @@
 clc; clear all; close all;
 
 % Load Kvasir-v2 dataset
-imageFolder = 'kvasir-dataset';
+imageFolder = '/home/rehansaleem/Downloads/input/kvasir-dataset';
 imds = imageDatastore(imageFolder, 'IncludeSubfolders', true, 'LabelSource', 'foldernames');
 imds = shuffle(imds);
 
