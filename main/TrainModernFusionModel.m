@@ -1,11 +1,9 @@
 % TrainModernFusionModel.m
 % Modernized training pipeline for GI tract image classification
 % Combines state-of-the-art CNNs, handcrafted features, and modern ML techniques
-%
-% Author: Updated for 2024-2025
-% Date: 2024
 
 clc; clear; close all;
+rng(42);  % Fixed seed for reproducibility
 
 %% Configuration
 config = struct();
@@ -37,7 +35,7 @@ config.cnnModels = {'resnet50', 'densenet201'};  % Can add more: 'resnet101', 'm
 % 'concat': Simple concatenation (baseline)
 % 'weighted': Variance-based weighted fusion
 % 'bilinear': Bilinear pooling (richer representations)
-config.fusionMethod = 'attention';  % Recommended: 'attention' or 'multimodal' for attention-based fusion
+config.fusionMethod = 'varianceCorrelationWeighted';  
 
 % Image-level augmentation (applied before feature extraction)
 config.imageAugmentation = struct();
@@ -46,7 +44,7 @@ config.imageAugmentation.rotation = [-15, 15];  % Rotation range in degrees
 config.imageAugmentation.translation = [-10, 10];  % Translation range in pixels
 config.imageAugmentation.scale = [0.9, 1.1];  % Scale range
 config.imageAugmentation.flip = 'horizontal';  % 'horizontal', 'vertical', 'both', 'none'
-config.imageAugmentation.brightness = [0.8, 1.2];  % Brightness range
+% config.imageAugmentation.brightness = [0.8, 1.2];  % Brightness range
 config.imageAugmentation.contrast = [0.8, 1.2];  % Contrast range
 
 % Feature-level augmentation (SMOTE)
@@ -58,7 +56,7 @@ config.augmentation.k = 5;  % Number of neighbors for SMOTE
 
 % Classification options
 config.classifier = struct();
-config.classifier.type = 'svm';  % 'svm', 'ensemble', 'xgboost', 'neural', 'ensemble_multi'
+config.classifier.type = 'ensemble';  % 'svm', 'ensemble', 'xgboost', 'neural', 'ensemble_multi'
 config.classifier.optimizeHyperparams = true;
 config.classifier.cvFolds = 5;
 config.classifier.usePCA = false;  % Set to true for dimensionality reduction (recommended)
@@ -191,7 +189,7 @@ for modelIdx = 1:length(config.cnnModels)
             augOptions.translation = config.imageAugmentation.translation;
             augOptions.scale = config.imageAugmentation.scale;
             augOptions.flip = config.imageAugmentation.flip;
-            augOptions.brightness = config.imageAugmentation.brightness;
+            % augOptions.brightness = config.imageAugmentation.brightness;
             augOptions.contrast = config.imageAugmentation.contrast;
             augOptions.inputSize = config.inputSize;
             
