@@ -41,6 +41,7 @@
 ├── fuseFeaturesModern.m              # Feature fusion methods
 ├── applySMOTEAdvanced.m              # Advanced SMOTE augmentation
 ├── trainModernClassifier.m           # Classifier training
+├── generateLIMEImage.m           # LIME Visualization
 
 ```
 
@@ -74,6 +75,8 @@ config.classifier.type = 'svm';  % Choose classifier
 ```matlab
 TrainModernFusionModel
 ```
+### 4. Ablation Study
+
 
 ## Configuration Options
 
@@ -108,16 +111,6 @@ Based on modern techniques, you should expect:
 - **Test Accuracy**: 95-97% (improved from 94.3%)
 - **Training Time**: 30-60 minutes (depending on GPU)
 - **Feature Dimension**: ~2000-3000 (after fusion)
-
-## Key Improvements Over 2022 Version
-
-1. **Better CNNs**: ResNet/DenseNet instead of VGG/AlexNet
-2. **Proper Feature Extraction**: Complete Haralick and Zernike implementations
-3. **Advanced Fusion**: Attention mechanisms instead of simple concatenation
-4. **Better Augmentation**: Borderline SMOTE and ADASYN options
-5. **Hyperparameter Optimization**: Automatic tuning instead of manual selection
-6. **GPU Support**: Automatic GPU detection and utilization
-7. **Modular Design**: Easy to swap components and experiment
 
 ## Troubleshooting
 
