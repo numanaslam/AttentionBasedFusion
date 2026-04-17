@@ -14,12 +14,6 @@ function [classifier, results] = trainModernClassifier(features, labels, classif
 %       classifier - Trained classifier
 %       results - Structure with training results
 
-if nargin < 3
-    fprintf('Error: trainModernClassifier called with %d arguments.\n', nargin);
-    dbstack;
-    error('trainModernClassifier requires at least 3 arguments: features, labels, classifierType');
-end
-
 if nargin < 4
     options = struct();
 end
